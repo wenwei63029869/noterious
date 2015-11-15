@@ -22,7 +22,7 @@ angular.module('noterious')
     };
 
     ctrl.getBoards = function () {
-      ctrl.boards = BoardsModel.all()
+      BoardsModel.all()
       .then(function(boards){
         ctrl.boards = boards;
       })

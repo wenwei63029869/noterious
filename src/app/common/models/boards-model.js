@@ -22,10 +22,10 @@ angular.module('noterious.common')
       };
 
       service.all = function(){
-        var deferred = $q.defer;
+        var deferred = $q.defer();
 
         deferred.resolve(boards);
 
         return deferred.promise;
-      }
+      };
   });
