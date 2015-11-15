@@ -2,30 +2,38 @@
 
 angular.module('noterious.common')
   .service('BoardsModel', function ($http, UserModel, ENDPOINT_URI, $q) {
-    var service = this,
-    boards = {
-        1: {
-          description: "Anything and everything!",
-          isPublic: true,
-          title: "Random Ideas"
-        },
-        2: {
-          description: "BizDev Ideas",
-          isPublic: false,
-          title: "Hustle"
-        },
-        3: {
-          description: "this is a test",
-          isPublic: false,
-          title: "testing"
-        }
-      };
+    var service = this;
 
-      service.all = function(){
-        var deferred = $q.defer();
+    function extract(result) {
+      return result.data;
+    }
 
-        deferred.resolve(boards);
+    function getUrl() {
+      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards.json';
+    }
 
-        return deferred.promise;
-      };
+    service.all = function () {
+      return $http.get("https://wenwei63029869.firebaseio.com/users/b901cb6b-6036-4d2d-994e-fbca2d51aa92/boards.json").then(extract);
+    };
+    /*
+    function getUrlForId(boardId) {
+      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '.json';
+    }
+
+    service.fetch = function (boardId) {
+      return $http.get(getUrlForId(boardId)).then(extract);
+    };
+
+    service.create = function (board) {
+      return $http.post(getUrl(), board).then(extract);
+    };
+
+    service.update = function (boardId, board) {
+      return $http.put(getUrlForId(boardId), board).then(extract);
+    };
+
+    service.destroy = function (boardId) {
+      return $http.delete(getUrlForId(boardId)).then(extract);
+    };
+    */
   });
