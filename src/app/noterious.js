@@ -7,7 +7,7 @@ angular.module('noterious', [
   'noterious.common'
 ])
   .constant('ENDPOINT_URI', 'https://wenwei63029869.firebaseio.com/')
-  .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/boards');
 
     $stateProvider
