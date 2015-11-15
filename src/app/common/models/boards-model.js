@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious.common')
-  .service('BoardsModel', function ($http, UserModel, ENDPOINT_URI, $q) {
+  .service('BoardsModel', function ($http, UserModel, ENDPOINT_URI) {
     var service = this;
 
     function extract(result) {
@@ -13,7 +13,7 @@ angular.module('noterious.common')
     }
 
     service.all = function () {
-      return $http.get("https://wenwei63029869.firebaseio.com/users/b901cb6b-6036-4d2d-994e-fbca2d51aa92/boards.json").then(extract);
+      return $http.get(getUrl()).then(extract);
     };
     /*
     function getUrlForId(boardId) {
